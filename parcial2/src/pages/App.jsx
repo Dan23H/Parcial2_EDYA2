@@ -3,15 +3,12 @@ import { Counter } from '../components/Counter';
 import './App.css';
 
 export const App = () => {
-  const [num, setNum] = useState(1)
-  const handleSum = () => {
-    setNum(num + 1)
-  }
-  const handleRes = () => {
-    setNum(num - 1)
-  }
+  // la idea era colocar un contador para que filtrara el número de los álbumes,
+  // sin embargo, me quedé sin tiempo
   return (
-    <Counter handleSum={handleSum} handleRes={handleRes} num={num} />
-    <GetPosts album={1}/>
+    <>
+      <GetPosts album={1} />
+    </>
+
   )
 }
