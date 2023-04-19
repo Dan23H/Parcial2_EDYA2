@@ -1,28 +1,30 @@
 import { useEffect, useState } from "react"
 import "../pages/App.css"
 
-export const GetPosts = () => {
-    const [data, setData] = useState([])
+export const GetPosts = ({album}) => {
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
         fetch("https://jsonplaceholder.typicode.com/photos")
-            .then(response => response.json())
-            .then(data => setData(data))
+            .then(res => res.json())
+            .then(posts => setPosts(posts))
             .catch(error => console.log(error))
     }, [])
-    
+
     return (
         <>
-            <div className="container">
+            <div className="row">
                 {
-                    data.map(
+                    posts.filter((x,y) => x.albumId === album).map(
                         item => (
-                            <div className="img-container">
+                            
+                            <div className="card-container">
                                 <div>
-                                    <img className="img-card" src={item.url} alt={item.thumbnailUrl} />
+                                    <img className="card-img" src={item.url} alt={item.thumbnailUrl} />
                                 </div>
-                                <div className="img-body">
-                                    <span>{item.title}</span>
+                                <div className="card-text">
+                                    <p>{item.title}</p>
+                                    {item.albumId}
                                 </div>
 
                             </div>
