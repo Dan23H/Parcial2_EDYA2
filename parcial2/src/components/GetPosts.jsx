@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import "../pages/App.css"
 
 export const GetPosts = () => {
     const [data, setData] = useState([])
@@ -9,9 +10,27 @@ export const GetPosts = () => {
             .then(data => setData(data))
             .catch(error => console.log(error))
     }, [])
+    
     return (
         <>
-        {data.map(item => (<img src={item.url} alt={item.thumbnailUrl} title={item.title}/>))}
+            <div className="container">
+                {
+                    data.map(
+                        item => (
+                            <div className="img-container">
+                                <div>
+                                    <img className="img-card" src={item.url} alt={item.thumbnailUrl} />
+                                </div>
+                                <div className="img-body">
+                                    <span>{item.title}</span>
+                                </div>
+
+                            </div>
+
+                        )
+                    )
+                }
+            </div>
         </>
     )
 }
